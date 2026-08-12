@@ -4,4 +4,9 @@ dist
 *.local
 .env
 .env.*
+.vercel
+.optimized
 public/assets/archive/
+public/assets/rabbis/legacy/
+# מדיה כבדה ב־R2 CDN — לא ב־git
+public/assets/videos/*.mp4

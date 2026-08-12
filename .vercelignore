@@ -1,0 +1,8 @@
+node_modules
+dist
+.DS_Store
+.optimized
+.vercel
+.env*
+public/assets/archive
+public/assets/rabbis/legacy

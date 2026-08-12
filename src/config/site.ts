@@ -2,6 +2,10 @@
  * הגדרות אתר מרכזיות — לשנות כאן, לא בתוך הקומפוננטות.
  * אנליטיקס / וואטסאפ / מונה / קישורים.
  */
+
+/** Cloudflare R2 — מדיה מואצת ב־CDN */
+const CDN = 'https://pub-ba5d067c6c7c4c99a84c9f8c1692a663.r2.dev'
+
 export const site = {
   name: 'עומדים על המשמר',
   slogan: 'שומרים אחד על השני',
@@ -34,26 +38,28 @@ export const site = {
     thanks: '/thanks.html',
   },
 
+  cdn: CDN,
+
   videos: {
     /** דף הבית — הרב סנדרו (לכלל הציבור) */
-    explain: '/assets/videos/explain.mp4',
-    explainPoster: '/assets/videos/explain-poster.png',
+    explain: `${CDN}/videos/explain.mp4`,
+    explainPoster: `${CDN}/videos/explain-poster.jpg`,
     /** דף ביצוע — מדריך אנכי */
-    tutorial: '/assets/videos/tutorial.mp4',
-    tutorialPoster: '/assets/videos/tutorial-poster.png',
+    tutorial: `${CDN}/videos/tutorial.mp4`,
+    tutorialPoster: `${CDN}/videos/tutorial-poster.jpg`,
     /** דף תודה — סרטון סנדרו #2 (מסר נפרד, אנכי) */
-    sandro: '/assets/videos/sandro.mp4',
-    sandroPoster: '/assets/videos/sandro-poster.jpg',
+    sandro: `${CDN}/videos/sandro.mp4`,
+    sandroPoster: `${CDN}/videos/sandro-poster.jpg`,
   },
 
   logos: {
-    mark: '/assets/logos/logo-mark.svg',
-    markGold: '/assets/logos/logo-mark-gold.svg',
-    full: '/assets/logos/logo-full.svg',
-    goldMono: '/assets/logos/logo-gold-mono.svg',
+    mark: `${CDN}/logos/logo-mark.svg`,
+    markGold: `${CDN}/logos/logo-mark-gold.svg`,
+    full: `${CDN}/logos/logo-full.svg`,
+    goldMono: `${CDN}/logos/logo-gold-mono.svg`,
   },
 
-  texture: '/assets/textures/texture-1929.jpg',
+  texture: `${CDN}/textures/texture-1929.jpg`,
 } as const
 
 /**
