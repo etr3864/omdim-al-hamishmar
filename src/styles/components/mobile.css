@@ -106,8 +106,8 @@ button {
   }
 
   .hero__cta-wrap {
-    width: 100%;
-    max-width: 420px;
+    width: auto;
+    max-width: min(86vw, 300px);
     gap: 12px;
     margin-top: 2px;
   }
@@ -117,15 +117,19 @@ button {
     letter-spacing: 0.05em;
   }
 
-  /* CTA — לחיץ ומלא רוחב */
+  /* CTA — קומפקטי יותר במובייל */
   .cta,
   .cta--hero {
-    width: 100%;
-    max-width: 100%;
+    width: auto;
+    max-width: min(86vw, 300px);
     text-align: center;
-    padding: 0.92em 1.15em;
-    font-size: clamp(1.12rem, 4.8vw, 1.35rem);
-    min-height: 54px;
+    padding: 0.85em 1.1em;
+    font-size: clamp(1.05rem, 4.2vw, 1.2rem);
+    min-height: 50px;
+  }
+
+  .hero__cta-wrap .cta--hero {
+    width: 100%;
   }
 
   .cta--sm {
@@ -148,7 +152,7 @@ button {
   /* —— טראסט סטריפ —— */
   .trust-strip {
     margin-top: 22px;
-    gap: 14px;
+    gap: 16px;
     width: 100%;
   }
 
@@ -158,11 +162,11 @@ button {
   }
 
   .trust-strip__label em {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.06em;
     white-space: normal;
     text-align: center;
-    max-width: 18ch;
+    max-width: 20ch;
   }
 
   .trust-strip__faces {
@@ -170,30 +174,32 @@ button {
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    gap: 12px 10px;
-    max-width: 340px;
+    gap: 16px 14px;
+    max-width: 400px;
     width: 100%;
     margin-inline: auto;
   }
 
   .trust-face {
-    width: 72px;
-    gap: 6px;
+    width: 88px;
+    gap: 8px;
   }
 
   .trust-face__ring {
     margin-inline: auto;
+    padding: 3px;
   }
 
   .trust-face img {
-    width: 54px;
-    height: 54px;
+    width: 68px;
+    height: 68px;
   }
 
   .trust-face span {
-    font-size: 10px;
-    line-height: 1.25;
-    max-width: 9ch;
+    font-size: 12px;
+    line-height: 1.3;
+    max-width: 11ch;
+    color: rgba(248, 243, 234, 0.78);
   }
 
   /* —— וידאו אנכי —— */
@@ -265,7 +271,11 @@ button {
   .rabbis-stack {
     gap: 18px;
     margin-top: 8px;
-    padding-block: 8vh 18vh;
+    padding-block: 4vh 0;
+  }
+
+  #rabbis {
+    padding-bottom: clamp(2.5rem, 7vw, 3.5rem);
   }
 
   .rabbi-card {
@@ -536,21 +546,21 @@ button {
   }
 
   .trust-strip__faces {
-    max-width: 300px;
-    gap: 10px 8px;
+    max-width: 360px;
+    gap: 14px 12px;
   }
 
   .trust-face {
-    width: 64px;
+    width: 80px;
   }
 
   .trust-face img {
-    width: 48px;
-    height: 48px;
+    width: 62px;
+    height: 62px;
   }
 
   .trust-face span {
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .cta,
