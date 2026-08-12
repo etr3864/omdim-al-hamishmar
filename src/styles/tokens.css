@@ -1,0 +1,50 @@
+/* עומדים על המשמר — Design Tokens v1 */
+:root {
+  --gold: #e7b95a;
+  --ink: #1c1c1d;
+  --cream: #f8f3ea;
+  --white: #ffffff;
+
+  --bg-0: #0a0a0b;
+  --bg-1: #121213;
+  --bg-2: #1c1c1d;
+  --bg-3: #262627;
+
+  --gold-dim: #8a6e33;
+  --gold-glow: rgba(231, 185, 90, 0.18);
+  --hairline: rgba(231, 185, 90, 0.22);
+
+  --text-1: #f8f3ea;
+  --text-2: rgba(248, 243, 234, 0.72);
+  --text-3: rgba(248, 243, 234, 0.45);
+
+  --font-display: 'Heebo', system-ui, sans-serif;
+  --font-body: 'Heebo', system-ui, sans-serif;
+
+  --fs-hero: clamp(2.4rem, 9vw, 5.2rem);
+  --fs-h2: clamp(1.8rem, 6vw, 3.2rem);
+  --fs-h3: clamp(1.25rem, 4vw, 1.75rem);
+  --fs-body: clamp(1.0625rem, 2.4vw, 1.1875rem);
+  --fs-micro: 0.8125rem;
+
+  --lh-tight: 0.98;
+  --lh-body: 1.75;
+  --ls-tight: -0.03em;
+
+  --space-section: clamp(5rem, 12vw, 9rem);
+  --space-block: clamp(2rem, 5vw, 3.5rem);
+  --maxw: 1120px;
+  --maxw-text: 62ch;
+
+  --cta-skew: -2deg;
+  --cta-bg: var(--gold);
+  --cta-fg: var(--ink);
+  --cta-underline: var(--white);
+  --radius: 4px;
+  --radius-card: 14px;
+
+  --shadow-gold: 0 0 60px var(--gold-glow);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --header-h: 56px;
+}

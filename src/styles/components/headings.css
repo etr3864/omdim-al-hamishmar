@@ -1,0 +1,156 @@
+/* כותרות תצוגה — משחק עדין בצבע זהב / שמנת */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--text-1);
+  text-wrap: balance;
+}
+
+.display--lg {
+  font-size: clamp(1.95rem, 6.4vw, 3.35rem);
+}
+
+.display--md {
+  font-size: clamp(1.7rem, 5.4vw, 2.75rem);
+}
+
+.display--center {
+  text-align: center;
+  margin-inline: auto;
+}
+
+.display--start {
+  text-align: start;
+}
+
+.display--narrow {
+  max-width: 16ch;
+}
+
+.display--mid {
+  max-width: 20ch;
+}
+
+#rabbis .display__accent {
+  white-space: nowrap;
+}
+
+.display--wide {
+  max-width: 24ch;
+}
+
+.display--stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.14em;
+}
+
+.display__lead {
+  display: block;
+  color: rgba(248, 243, 234, 0.58);
+  font-size: 0.7em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.display__accent {
+  font-style: normal;
+  background: linear-gradient(
+    118deg,
+    #f3d99a 0%,
+    var(--gold) 42%,
+    #c9a05a 78%,
+    #f0d08a 100%
+  );
+  background-size: 140% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.display__accent--block {
+  display: block;
+  font-size: 1.06em;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.display--ruled {
+  position: relative;
+  padding-inline-start: 1.05rem;
+}
+
+.display--ruled::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.2em;
+  bottom: 0.2em;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(231, 185, 90, 0.95), rgba(231, 185, 90, 0.18));
+}
+
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+
+.hero__title .display__soft {
+  color: rgba(248, 243, 234, 0.72);
+  font-size: 0.9em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.hero__title .display__accent {
+  display: inline;
+}
+
+.display--promise {
+  max-width: 14ch;
+}
+
+.display--story {
+  max-width: 12ch;
+}
+
+.display--final {
+  max-width: 14ch;
+}
+
+.display-head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.display-head--center {
+  align-items: center;
+  text-align: center;
+}
+
+.display-head--start {
+  align-items: flex-start;
+  text-align: start;
+}
+
+.display-head .eyebrow {
+  color: rgba(231, 185, 90, 0.78);
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .display__accent {
+    color: var(--gold);
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}

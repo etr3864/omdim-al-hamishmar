@@ -1,0 +1,218 @@
+.ambient {
+  position: absolute;
+  inset: -28% 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  /* פייד ארוך מאוד — כמעט שליש מכל צד */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 34%,
+    #000 66%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 34%,
+    #000 66%,
+    transparent 100%
+  );
+}
+
+.ambient__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: 0.75;
+}
+
+.ambient__glow--1 {
+  width: min(72vw, 520px);
+  height: min(52vw, 360px);
+  background: radial-gradient(ellipse, rgba(231, 185, 90, 0.07), rgba(231, 185, 90, 0) 70%);
+  animation: floatSlow 30s ease-in-out infinite;
+}
+
+.ambient__glow--2 {
+  width: min(58vw, 420px);
+  height: min(44vw, 300px);
+  background: radial-gradient(ellipse, rgba(198, 146, 74, 0.055), rgba(198, 146, 74, 0) 72%);
+  animation: floatSlow 36s ease-in-out infinite reverse;
+}
+
+.ambient__arc {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(231, 185, 90, 0.03);
+  aspect-ratio: 1;
+  opacity: 0.45;
+  filter: blur(0.4px);
+}
+
+.ambient__arc--outer {
+  width: min(78vw, 580px);
+  box-shadow: inset 0 0 80px rgba(231, 185, 90, 0.025);
+}
+
+.ambient__arc--inner {
+  width: min(52vw, 360px);
+  border-color: rgba(231, 185, 90, 0.045);
+}
+
+.ambient__mark {
+  position: absolute;
+  width: min(48vw, 480px);
+  opacity: 0.03;
+  animation: floatSlow 26s ease-in-out infinite;
+  user-select: none;
+}
+
+/* וריאנטים — מיקום שונה לכל סקשן */
+.ambient--a .ambient__glow--1 {
+  top: -8%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ambient--a .ambient__glow--2 {
+  right: -14%;
+  bottom: -6%;
+}
+.ambient--a .ambient__arc--outer {
+  right: -22%;
+  top: -18%;
+}
+.ambient--a .ambient__arc--inner {
+  right: -8%;
+  top: 2%;
+}
+.ambient--a .ambient__mark {
+  left: -12%;
+  bottom: -10%;
+}
+
+/* סקשן רבנים — הפייד התחתון לא “אוכל” את הכרטיס האחרון */
+#rabbis {
+  padding-bottom: calc(var(--space-section) + 1.5rem);
+}
+
+#rabbis .ambient {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 22%,
+    #000 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 22%,
+    #000 90%,
+    transparent 100%
+  );
+}
+
+#steps .ambient {
+  opacity: 0.55;
+}
+
+#steps .ambient__mark {
+  opacity: 0.018;
+}
+
+#steps .ambient__glow {
+  opacity: 0.4;
+}
+
+.ambient--b .ambient__glow--1 {
+  left: -16%;
+  top: 12%;
+}
+.ambient--b .ambient__glow--2 {
+  right: -10%;
+  top: -4%;
+}
+.ambient--b .ambient__arc--outer {
+  left: -24%;
+  bottom: -22%;
+}
+.ambient--b .ambient__arc--inner {
+  left: -10%;
+  bottom: -2%;
+}
+.ambient--b .ambient__mark {
+  right: -14%;
+  top: -8%;
+}
+
+.ambient--c .ambient__glow--1 {
+  right: -8%;
+  top: 22%;
+}
+.ambient--c .ambient__glow--2 {
+  left: 20%;
+  bottom: -12%;
+}
+.ambient--c .ambient__arc--outer {
+  left: 50%;
+  bottom: -40%;
+  transform: translateX(-50%);
+}
+.ambient--c .ambient__arc--inner {
+  left: 50%;
+  bottom: -22%;
+  transform: translateX(-50%);
+}
+.ambient--c .ambient__mark {
+  left: -10%;
+  top: -6%;
+}
+
+.ambient--d .ambient__glow--1 {
+  left: 50%;
+  top: -12%;
+  transform: translateX(-50%);
+  width: min(86vw, 680px);
+  height: min(50vw, 380px);
+  background: radial-gradient(ellipse, rgba(231, 185, 90, 0.12), rgba(231, 185, 90, 0) 68%);
+}
+.ambient--d .ambient__glow--2 {
+  left: -12%;
+  bottom: 4%;
+}
+.ambient--d .ambient__arc--outer {
+  right: -18%;
+  bottom: -18%;
+}
+.ambient--d .ambient__arc--inner {
+  right: -4%;
+  bottom: 2%;
+}
+.ambient--d .ambient__mark {
+  right: 8%;
+  top: 30%;
+  width: min(36vw, 320px);
+  opacity: 0.025;
+}
+
+.section > .container,
+.section > .container--narrow,
+.section > .container--text,
+.section > .hero__inner,
+.hero > .hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* הירו נשפך רך לסקשן שאחריו */
+.hero {
+  isolation: isolate;
+}
+
+.hero .ambient {
+  inset: 0 0 -20% 0;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 48%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 48%, transparent 100%);
+}

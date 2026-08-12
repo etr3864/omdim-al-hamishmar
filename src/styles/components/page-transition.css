@@ -1,0 +1,258 @@
+/* מעבר עמודים — קדימה ואחורה */
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.page-transition.is-active {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.page-transition__veil {
+  position: absolute;
+  inset: 0;
+  background: #060607;
+  opacity: 0;
+  transform: scaleY(0.92);
+  transform-origin: center top;
+}
+
+.page-transition.is-active .page-transition__veil {
+  animation: ptVeil 640ms var(--ease) forwards;
+}
+
+.page-transition.is-active.is-back .page-transition__veil {
+  transform-origin: center bottom;
+  animation-name: ptVeilBack;
+}
+
+.page-transition__bloom {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    ellipse 55% 40% at 50% 42%,
+    rgba(231, 185, 90, 0.34),
+    rgba(231, 185, 90, 0.08) 38%,
+    transparent 68%
+  );
+  opacity: 0;
+  filter: blur(8px);
+}
+
+.page-transition.is-active .page-transition__bloom {
+  animation: ptBloom 640ms var(--ease) forwards;
+}
+
+.page-transition__shimmer {
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  left: 0;
+  width: min(18vw, 88px);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(231, 185, 90, 0.14) 42%,
+    rgba(248, 243, 234, 0.22) 50%,
+    rgba(231, 185, 90, 0.12) 58%,
+    transparent 100%
+  );
+  transform: translateX(120%) skewX(-10deg);
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.page-transition.is-active .page-transition__shimmer {
+  animation: ptShimmer 520ms cubic-bezier(0.22, 0.7, 0.2, 1) forwards;
+}
+
+.page-transition.is-active.is-back .page-transition__shimmer {
+  animation-name: ptShimmerBack;
+}
+
+@keyframes ptVeil {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.94);
+  }
+  35% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes ptVeilBack {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.94);
+  }
+  35% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes ptBloom {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.55;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes ptShimmer {
+  0% {
+    opacity: 0;
+    transform: translateX(140vw) skewX(-10deg);
+  }
+  30% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-60vw) skewX(-10deg);
+  }
+}
+
+@keyframes ptShimmerBack {
+  0% {
+    opacity: 0;
+    transform: translateX(-60vw) skewX(-10deg);
+  }
+  30% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(140vw) skewX(-10deg);
+  }
+}
+
+@media (max-width: 720px) {
+  .page-transition__shimmer {
+    width: min(14vw, 52px);
+    top: 12%;
+    bottom: 12%;
+  }
+
+  .page-transition.is-active .page-transition__shimmer {
+    animation-duration: 380ms;
+  }
+
+  .page-transition.is-active .page-transition__veil {
+    animation-duration: 420ms;
+  }
+
+  .page-transition.is-active .page-transition__bloom {
+    animation-duration: 420ms;
+    inset: -8%;
+  }
+}
+
+/* יציאה קדימה */
+html.is-leaving #app {
+  animation: ptOut 540ms var(--ease) forwards;
+}
+
+/* יציאה אחורה */
+html.is-leaving-back #app {
+  animation: ptOutBack 540ms var(--ease) forwards;
+}
+
+/* כניסה קדימה */
+html.is-entering #app {
+  opacity: 0;
+  transform: translateY(18px) scale(0.985);
+  filter: blur(6px);
+}
+
+html.is-ready #app {
+  animation: ptIn 740ms var(--ease) both;
+}
+
+/* כניסה אחורה */
+html.is-entering-back #app {
+  opacity: 0;
+  transform: translateY(-18px) scale(0.985);
+  filter: blur(6px);
+}
+
+html.is-ready-back #app {
+  animation: ptInBack 740ms var(--ease) both;
+}
+
+@keyframes ptOut {
+  to {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.985);
+    filter: blur(8px);
+  }
+}
+
+@keyframes ptOutBack {
+  to {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+    filter: blur(8px);
+  }
+}
+
+@keyframes ptIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes ptInBack {
+  from {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.985);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition,
+  html.is-leaving #app,
+  html.is-leaving-back #app,
+  html.is-entering #app,
+  html.is-entering-back #app,
+  html.is-ready #app,
+  html.is-ready-back #app {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

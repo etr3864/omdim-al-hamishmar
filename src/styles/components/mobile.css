@@ -1,0 +1,582 @@
+/* ===== מובייל — חוויה, מגע, רספונסיביות ===== */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+  -webkit-tap-highlight-color: rgba(231, 185, 90, 0.18);
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* מניעת זום אוטומטי באייפון על שדות */
+input,
+textarea,
+select,
+button {
+  font-size: max(16px, 1em);
+}
+
+@media (max-width: 720px) {
+  :root {
+    --space-section: clamp(3.25rem, 12vw, 5rem);
+    --space-block: clamp(1.35rem, 4.5vw, 2.25rem);
+    --fs-hero: clamp(2.15rem, 9.5vw, 3.1rem);
+    --fs-h2: clamp(1.55rem, 6.8vw, 2.2rem);
+    --fs-h3: clamp(1.15rem, 4.6vw, 1.4rem);
+    --fs-body: 1.0625rem;
+    --header-h: 54px;
+    --cta-skew: -1.5deg;
+  }
+
+  /* רקע קבוע שובר ביצועים במובייל */
+  body {
+    background-attachment: scroll;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  body::after {
+    opacity: 0.85;
+  }
+
+  .site-header {
+    padding-top: max(8px, env(safe-area-inset-top, 0px));
+    padding-inline: max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    min-height: var(--header-h);
+  }
+
+  .site-header__brand {
+    gap: 8px;
+  }
+
+  .site-header__brand img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .site-header__back {
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .container,
+  .container--narrow,
+  .container--text {
+    width: min(100% - 2 * 16px, var(--maxw));
+  }
+
+  /* —— הירו —— */
+  .hero {
+    padding: clamp(28px, 8vw, 48px) 0 clamp(36px, 9vw, 56px);
+  }
+
+  .hero__basad {
+    top: 6px;
+    right: 12px;
+    font-size: 10px;
+  }
+
+  .hero__inner {
+    gap: clamp(14px, 4vw, 20px);
+    padding-inline: 4px;
+    max-width: 100%;
+  }
+
+  .hero__logo {
+    width: clamp(88px, 24vw, 120px);
+  }
+
+  .hero__glow {
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero__title {
+    max-width: 14.5ch;
+    font-size: clamp(2.2rem, 10.5vw, 3rem);
+    line-height: 1.05;
+  }
+
+  .hero__cta-wrap {
+    width: 100%;
+    max-width: 420px;
+    gap: 12px;
+    margin-top: 2px;
+  }
+
+  .hero__nudge {
+    font-size: 0.92rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* CTA — לחיץ ומלא רוחב */
+  .cta,
+  .cta--hero {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: 0.92em 1.15em;
+    font-size: clamp(1.12rem, 4.8vw, 1.35rem);
+    min-height: 54px;
+  }
+
+  .cta--sm {
+    width: auto;
+    min-width: min(100%, 240px);
+    min-height: 48px;
+  }
+
+  .cta--ghost {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .micro {
+    font-size: 12px;
+    line-height: 1.45;
+    padding-inline: 8px;
+  }
+
+  /* —— טראסט סטריפ —— */
+  .trust-strip {
+    margin-top: 22px;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .trust-strip__label {
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  .trust-strip__label em {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    white-space: normal;
+    text-align: center;
+    max-width: 18ch;
+  }
+
+  .trust-strip__faces {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px 10px;
+    max-width: 340px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .trust-face {
+    width: 72px;
+    gap: 6px;
+  }
+
+  .trust-face__ring {
+    margin-inline: auto;
+  }
+
+  .trust-face img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .trust-face span {
+    font-size: 10px;
+    line-height: 1.25;
+    max-width: 9ch;
+  }
+
+  /* —— וידאו אנכי —— */
+  .video-frame--vertical {
+    width: min(78vw, 320px);
+    max-width: 320px;
+  }
+
+  .video-frame--featured {
+    box-shadow:
+      0 0 0 1px rgba(231, 185, 90, 0.08),
+      0 16px 48px rgba(0, 0, 0, 0.4),
+      0 0 40px rgba(231, 185, 90, 0.1);
+  }
+
+  .section--video {
+    padding-block: clamp(3rem, 10vw, 4.5rem);
+  }
+
+  .section--video__content {
+    gap: 16px !important;
+  }
+
+  /* —— שלבים —— */
+  .steps {
+    --step-n: 52px;
+    gap: 34px;
+    max-width: 100%;
+  }
+
+  .step--final {
+    margin-top: 28px;
+  }
+
+  .step--final.is-active .step__n {
+    transform: scale(1.14);
+  }
+
+  .step--final .step__body h3 {
+    font-size: clamp(1.35rem, 5.5vw, 1.7rem);
+  }
+
+  .step {
+    gap: 14px;
+  }
+
+  .step__n {
+    font-size: 1.35rem;
+    box-shadow: 0 0 0 5px #0a0a0b;
+  }
+
+  .step.is-active .step__n {
+    transform: scale(1.08);
+  }
+
+  .step__body {
+    padding-top: 6px;
+    max-width: none;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .step__body h3 {
+    font-size: clamp(1.15rem, 4.8vw, 1.4rem);
+    line-height: 1.2;
+  }
+
+  /* —— רבנים —— */
+  .rabbis-stack {
+    gap: 18px;
+    margin-top: 8px;
+    padding-block: 8vh 18vh;
+  }
+
+  .rabbi-card {
+    padding: 16px 14px;
+    gap: 14px;
+  }
+
+  .rabbi-card__photo {
+    width: 78px;
+    height: 78px;
+  }
+
+  .rabbi-card__quote {
+    font-size: clamp(0.98rem, 3.8vw, 1.12rem);
+    line-height: 1.4;
+  }
+
+  .rabbi-card__body {
+    max-width: none;
+    gap: 10px;
+  }
+
+  #rabbis .display--mid {
+    max-width: min(100%, 22ch);
+  }
+
+  #rabbis .display__accent {
+    white-space: nowrap;
+  }
+
+  /* —— כותרות —— */
+  .display--lg {
+    font-size: clamp(1.65rem, 7vw, 2.15rem);
+  }
+
+  .display--md {
+    font-size: clamp(1.45rem, 6.2vw, 1.9rem);
+  }
+
+  .display--narrow,
+  .display--mid,
+  .display--wide,
+  .display--promise,
+  .display--story,
+  .display--final {
+    max-width: 18ch;
+  }
+
+  .display--ruled {
+    padding-inline-start: 0.85rem;
+  }
+
+  /* —— promise / negations —— */
+  .negations {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .negation {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .badge-gold {
+    font-size: 1.05rem;
+    padding: 0.5em 1em;
+  }
+
+  /* —— FAQ —— */
+  .faq__q {
+    padding: 16px 14px;
+    min-height: 52px;
+    font-size: 1rem;
+    gap: 12px;
+  }
+
+  .faq__a {
+    padding: 0 14px 16px;
+    font-size: 1rem;
+  }
+
+  /* —— פוטר —— */
+  .site-footer {
+    padding: 36px 16px calc(28px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .site-footer__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .site-footer__inner img {
+    height: 44px;
+  }
+
+  .site-footer__meta {
+    align-items: center;
+  }
+
+  .site-footer__meta span {
+    font-size: 12px;
+    max-width: 34ch;
+    text-align: center;
+  }
+
+  .site-footer__social {
+    justify-content: center;
+  }
+
+  /* —— דף ביצוע —— */
+  .hero--start {
+    padding-bottom: 28px !important;
+  }
+
+  .hero--start__title {
+    font-size: clamp(2rem, 9.5vw, 2.7rem);
+  }
+
+  .hero--start__sub {
+    font-size: 1.05rem;
+    max-width: 28ch;
+  }
+
+  .start-journey {
+    --start-n: 46px;
+    width: min(100% - 32px, 1000px);
+    padding-bottom: 2.5rem;
+  }
+
+  .start-journey__rail {
+    top: 18px;
+    bottom: 72px;
+  }
+
+  .start-step {
+    padding: 2.1rem 0;
+  }
+
+  .start-step__head {
+    gap: 12px;
+    margin-bottom: 1.1rem;
+  }
+
+  .start-step__n {
+    width: var(--start-n);
+    height: var(--start-n);
+    font-size: 1.1rem;
+  }
+
+  .start-step__copy {
+    gap: 8px;
+  }
+
+  .start-step__copy h2 {
+    font-size: clamp(1.35rem, 6vw, 1.85rem);
+  }
+
+  .start-step__copy p {
+    font-size: 1rem;
+    max-width: none;
+  }
+
+  .start-help {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 18px 16px;
+    gap: 14px;
+  }
+
+  .start-step--final > .start-step__n {
+    top: 2.1rem;
+  }
+
+  .start-done {
+    padding-inline: calc(var(--start-n) + 14px);
+    max-width: none;
+    box-sizing: border-box;
+  }
+
+  .start-done .display,
+  .start-done h2 {
+    font-size: clamp(1.35rem, 6vw, 1.85rem);
+  }
+
+  .start-done__hook {
+    font-size: clamp(1.02rem, 4vw, 1.2rem);
+    max-width: 28ch;
+  }
+
+  .start-done__cta {
+    padding-inline-start: 0;
+    max-width: 100%;
+    justify-content: stretch;
+  }
+
+  .start-done__cta .cta {
+    width: 100%;
+  }
+
+  .tutorial {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tutorial__media {
+    position: static;
+    max-width: min(78vw, 320px);
+    width: 100%;
+    flex: none;
+  }
+
+  .tutorial__video {
+    max-width: 100%;
+  }
+
+  .tutorial__steps {
+    width: 100%;
+  }
+
+  .sound-gate__icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .sound-gate__body {
+    max-width: 26ch;
+  }
+
+  /* —— דף תודה —— */
+  .counter-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 8px;
+    font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+    text-align: center;
+  }
+
+  .counter-row__n {
+    font-size: clamp(2.4rem, 12vw, 3.4rem);
+    line-height: 1;
+  }
+
+  .share-box {
+    padding: 18px 14px;
+  }
+
+  .friend-box {
+    padding: 18px 14px;
+  }
+
+  /* אמביינט קל יותר במובייל */
+  .ambient__glow {
+    filter: blur(36px);
+    opacity: 0.65;
+  }
+
+  .ambient__mark {
+    opacity: 0.02;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --fs-hero: clamp(1.95rem, 10vw, 2.4rem);
+  }
+
+  .trust-strip__faces {
+    max-width: 300px;
+    gap: 10px 8px;
+  }
+
+  .trust-face {
+    width: 64px;
+  }
+
+  .trust-face img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .trust-face span {
+    font-size: 9px;
+  }
+
+  .cta,
+  .cta--hero {
+    font-size: 1.05rem;
+    padding: 0.88em 0.9em;
+  }
+
+  .video-frame--vertical {
+    width: min(84vw, 300px);
+  }
+}
+
+/* מגע: בלי hover-sticky על מסכי מגע */
+@media (hover: none) and (pointer: coarse) {
+  .cta:hover,
+  .cta--hero:hover {
+    transform: skewX(var(--cta-skew));
+    filter: none;
+  }
+
+  .cta--hero:active {
+    transform: skewX(var(--cta-skew)) scale(0.98);
+  }
+
+  .site-header__back:hover {
+    transform: none;
+  }
+}

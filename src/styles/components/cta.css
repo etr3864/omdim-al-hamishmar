@@ -1,0 +1,167 @@
+.cta {
+  display: inline-block;
+  border: 0;
+  cursor: pointer;
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+  letter-spacing: var(--ls-tight);
+  padding: 0.7em 1.6em;
+  transform: skewX(var(--cta-skew));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-gold);
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
+    filter 0.3s var(--ease);
+  text-decoration: none;
+  position: relative;
+}
+
+.cta > span {
+  display: inline-block;
+  transform: skewX(calc(-1 * var(--cta-skew)));
+  position: relative;
+  z-index: 1;
+}
+
+.cta:hover {
+  transform: skewX(var(--cta-skew)) scale(1.03);
+  color: var(--cta-fg);
+}
+
+.cta:active {
+  transform: skewX(var(--cta-skew)) scale(0.985);
+}
+
+.cta .u {
+  border-bottom: 4px solid var(--cta-underline);
+  padding-bottom: 2px;
+}
+
+/* הירו — לחיץ, בוגר, בלי טקסט עזר */
+.cta--hero {
+  padding: 0.82em 1.85em;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0 -2px 0 rgba(28, 28, 29, 0.12) inset,
+    0 10px 28px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(231, 185, 90, 0.35),
+    0 0 48px rgba(231, 185, 90, 0.28);
+  animation: ctaPulse 3.6s var(--ease) infinite;
+}
+
+.cta--hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0) 42%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+  pointer-events: none;
+}
+
+.cta--hero:hover {
+  transform: skewX(var(--cta-skew)) translateY(-3px) scale(1.025);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.34) inset,
+    0 -2px 0 rgba(28, 28, 29, 0.1) inset,
+    0 16px 36px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(231, 185, 90, 0.55),
+    0 0 72px rgba(231, 185, 90, 0.4);
+  filter: brightness(1.04);
+  animation: none;
+}
+
+.cta--hero:active {
+  transform: skewX(var(--cta-skew)) translateY(1px) scale(0.99);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.16) inset,
+    0 4px 14px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(231, 185, 90, 0.4),
+    0 0 36px rgba(231, 185, 90, 0.22);
+  filter: brightness(0.98);
+  animation: none;
+}
+
+.cta--hero:focus-visible {
+  outline: 2px solid rgba(248, 243, 234, 0.7);
+  outline-offset: 4px;
+}
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.28) inset,
+      0 -2px 0 rgba(28, 28, 29, 0.12) inset,
+      0 10px 28px rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(231, 185, 90, 0.35),
+      0 0 42px rgba(231, 185, 90, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.28) inset,
+      0 -2px 0 rgba(28, 28, 29, 0.12) inset,
+      0 10px 28px rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(231, 185, 90, 0.45),
+      0 0 64px rgba(231, 185, 90, 0.38);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta--hero {
+    animation: none;
+  }
+}
+
+.cta--sm {
+  font-size: 1.0625rem;
+  padding: 0.75em 1.5em;
+  box-shadow: 0 0 40px var(--gold-glow);
+}
+
+.cta--ghost {
+  background: transparent;
+  color: var(--gold);
+  box-shadow: none;
+  border: 1px solid rgba(231, 185, 90, 0.4);
+  transform: none;
+}
+
+.cta--ghost > span {
+  transform: none;
+}
+
+.cta--ghost:hover {
+  transform: none;
+  background: rgba(231, 185, 90, 0.08);
+  color: var(--gold);
+}
+
+.badge-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.05rem, 3vw, 1.35rem);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  background: var(--gold);
+  border-radius: var(--radius);
+  padding: 0.45em 1.1em;
+  transform: skewX(var(--cta-skew));
+  box-shadow: 0 0 40px rgba(231, 185, 90, 0.16);
+}
+
+.badge-gold > span {
+  display: inline-block;
+  transform: skewX(calc(-1 * var(--cta-skew)));
+}

@@ -1,0 +1,171 @@
+/* רשימת רבנים אנכית — הכרטיס במרכז המסך מודגש */
+
+.rabbis-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 3.5vw, 28px);
+  max-width: 720px;
+  margin: clamp(12px, 3vw, 24px) auto 0;
+  width: 100%;
+}
+
+.rabbi-card {
+  --focus: 0;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(18px, 4vw, 36px);
+  padding: clamp(18px, 3.5vw, 28px);
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(231, 185, 90, calc(0.08 + var(--focus) * 0.22));
+  background: rgba(18, 18, 19, calc(0.35 + var(--focus) * 0.45));
+  opacity: calc(0.38 + var(--focus) * 0.62);
+  transform: scale(calc(0.96 + var(--focus) * 0.04));
+  filter: saturate(calc(0.7 + var(--focus) * 0.3));
+  transition:
+    opacity 380ms var(--ease),
+    transform 420ms var(--ease),
+    border-color 380ms var(--ease),
+    background 380ms var(--ease),
+    box-shadow 420ms var(--ease),
+    filter 380ms var(--ease);
+  will-change: transform, opacity;
+}
+
+.rabbi-card.is-active {
+  box-shadow:
+    0 0 0 1px rgba(231, 185, 90, 0.1),
+    0 18px 50px rgba(0, 0, 0, 0.28),
+    0 0 40px rgba(231, 185, 90, 0.1);
+}
+
+.rabbi-card.is-near {
+  opacity: calc(0.55 + var(--focus) * 0.35);
+}
+
+.rabbi-card__photo {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(112px, 22vw, 168px);
+  height: clamp(112px, 22vw, 168px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.rabbi-card__photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 40%,
+    rgba(231, 185, 90, calc(0.08 + var(--focus) * 0.18)),
+    rgba(231, 185, 90, 0) 72%
+  );
+  border: 1px solid rgba(231, 185, 90, calc(0.14 + var(--focus) * 0.28));
+  box-shadow: 0 0 36px rgba(231, 185, 90, calc(var(--focus) * 0.18));
+  transition:
+    border-color 380ms var(--ease),
+    box-shadow 420ms var(--ease),
+    background 380ms var(--ease);
+}
+
+.rabbi-card__photo img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 50%;
+  filter: grayscale(calc(0.35 - var(--focus) * 0.25)) contrast(1.03);
+  transition: filter 380ms var(--ease);
+}
+
+.rabbi-card__body {
+  flex: 1 1 240px;
+  min-width: min(100%, 220px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 36ch;
+}
+
+.rabbi-card__quote {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.8vw, 1.55rem);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: rgba(248, 243, 234, calc(0.55 + var(--focus) * 0.45));
+  text-wrap: pretty;
+  transition: color 380ms var(--ease);
+}
+
+.rabbi-card__name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(231, 185, 90, calc(0.45 + var(--focus) * 0.55));
+  transition: color 380ms var(--ease);
+}
+
+.rabbi-card__name::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: rgba(231, 185, 90, calc(0.25 + var(--focus) * 0.45));
+  transition: background 380ms var(--ease);
+}
+
+@media (max-width: 640px) {
+  .rabbi-card {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    text-align: start;
+    padding: 16px 14px;
+    gap: 14px;
+  }
+
+  .rabbi-card__photo {
+    width: 78px;
+    height: 78px;
+    flex: 0 0 auto;
+  }
+
+  .rabbi-card__body {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .rabbi-card__quote {
+    font-size: clamp(0.98rem, 3.8vw, 1.12rem);
+    line-height: 1.4;
+  }
+
+  .rabbi-card__name {
+    font-size: 0.85rem;
+    gap: 8px;
+  }
+
+  .rabbi-card__name::before {
+    display: block;
+    width: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rabbi-card {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
