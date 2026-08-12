@@ -115,7 +115,7 @@ settingsBtn?.addEventListener('click', () => {
   void openScreenTimeSettings()
 })
 
-/** פס שלבים צף — חיווי חצי־שקוף למיקום הנוכחי */
+/** פס שלבים צף — מחוץ ל־#app כדי ש־fixed יעבוד במובייל (אחרי אנימציית מעבר) */
 function bindStartFlow(): void {
   const flow = document.querySelector<HTMLElement>('.start-flow')
   const journey = document.querySelector<HTMLElement>('.start-journey')
@@ -130,10 +130,15 @@ function bindStartFlow(): void {
 
   if (!flow || !sections.length) return
 
+  // #app מקבל transform/filter במעבר עמוד — שובר position:fixed ב־iOS
+  if (flow.parentElement !== document.body) {
+    document.body.appendChild(flow)
+  }
+
   const update = () => {
     const show = journey
-      ? journey.getBoundingClientRect().top < window.innerHeight * 0.72
-      : window.scrollY > 120
+      ? journey.getBoundingClientRect().top < window.innerHeight * 0.85
+      : window.scrollY > 40
     flow.classList.toggle('is-visible', show)
 
     const mid = window.innerHeight * 0.42
