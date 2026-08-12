@@ -68,6 +68,10 @@ ${renderHeader('start')}
               ${start.tutorial.settingsCta}
             </button>
             <p class="settings-jump__note">${start.tutorial.settingsNote}</p>
+            <div class="settings-jump__fallback" data-settings-fallback hidden>
+              <p class="settings-jump__fallback-msg" data-settings-fallback-msg></p>
+              <p class="settings-jump__fallback-path">${start.tutorial.settingsFallbackPath}</p>
+            </div>
           </div>
         </div>
         <div class="tutorial__steps">
