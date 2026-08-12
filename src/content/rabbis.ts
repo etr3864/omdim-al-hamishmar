@@ -4,8 +4,12 @@ export type Rabbi = {
   id: string
   name: string
   quote: string
+  /** JPEG/PNG fallback */
   photo: string
   full: string
+  /** WebP — קטן יותר, אותה איכות */
+  photoWebp: string
+  fullWebp: string
 }
 
 const cdn = site.cdn
@@ -17,6 +21,8 @@ export const rabbis: Rabbi[] = [
     quote: 'אין לקדוש ברוך הוא עונג יותר גדול מיהודי ששומר את העיניים והברית',
     photo: `${cdn}/rabbis/01.jpg`,
     full: `${cdn}/rabbis/01f.png`,
+    photoWebp: `${cdn}/rabbis/01.webp`,
+    fullWebp: `${cdn}/rabbis/01f.webp`,
   },
   {
     id: '02',
@@ -24,6 +30,8 @@ export const rabbis: Rabbi[] = [
     quote: 'הארגון מסייע לעם ישראל הטהורים והקדושים לשמור על העיניים',
     photo: `${cdn}/rabbis/02.jpg`,
     full: `${cdn}/rabbis/02f.png`,
+    photoWebp: `${cdn}/rabbis/02.webp`,
+    fullWebp: `${cdn}/rabbis/02f.webp`,
   },
   {
     id: '03',
@@ -31,6 +39,8 @@ export const rabbis: Rabbi[] = [
     quote: 'זיכוי הרבים מובהק, חבל שרק עכשיו מפרסמים את השיטה הזאת',
     photo: `${cdn}/rabbis/03.jpg`,
     full: `${cdn}/rabbis/03f.png`,
+    photoWebp: `${cdn}/rabbis/03.webp`,
+    fullWebp: `${cdn}/rabbis/03f.webp`,
   },
   {
     id: '04',
@@ -38,6 +48,8 @@ export const rabbis: Rabbi[] = [
     quote: 'ארגון עומדים על המשמר הוא ארגון מבורך, גן עדן מובטח',
     photo: `${cdn}/rabbis/04.jpg`,
     full: `${cdn}/rabbis/04f.png`,
+    photoWebp: `${cdn}/rabbis/04.webp`,
+    fullWebp: `${cdn}/rabbis/04f.webp`,
   },
   {
     id: '05',
@@ -45,6 +57,8 @@ export const rabbis: Rabbi[] = [
     quote: 'ידוע בספרים הקדושים ששמירת הקדושה זה המקור לפרנסה ולשפע',
     photo: `${cdn}/rabbis/05.jpg`,
     full: `${cdn}/rabbis/05f.png`,
+    photoWebp: `${cdn}/rabbis/05.webp`,
+    fullWebp: `${cdn}/rabbis/05f.webp`,
   },
   {
     id: '07',
@@ -52,5 +66,7 @@ export const rabbis: Rabbi[] = [
     quote: 'עכשיו אין יותר סיבה לא לשמור את העיניים',
     photo: `${cdn}/rabbis/07.jpg`,
     full: `${cdn}/rabbis/07f.png`,
+    photoWebp: `${cdn}/rabbis/07.webp`,
+    fullWebp: `${cdn}/rabbis/07f.webp`,
   },
 ]

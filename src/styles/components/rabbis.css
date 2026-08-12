@@ -70,6 +70,10 @@
     background 380ms var(--ease);
 }
 
+.rabbi-card__photo picture {
+  display: contents;
+}
+
 .rabbi-card__photo img {
   position: relative;
   width: 100%;

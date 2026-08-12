@@ -43,6 +43,15 @@ const wrap = $('[data-video-wrap]')
 
 gate?.addEventListener('click', async () => {
   if (!video) return
+  const lazy = video.getAttribute('data-lazy-src')
+  if (lazy && !video.querySelector('source')) {
+    const source = document.createElement('source')
+    source.src = lazy
+    source.type = 'video/mp4'
+    video.appendChild(source)
+    video.load()
+    video.dataset.lazyReady = '1'
+  }
   video.muted = false
   try {
     await video.play()

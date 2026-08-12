@@ -1,6 +1,7 @@
 import { initAnalytics, track } from '@/lib/analytics'
 import { bindFaq } from '@/ui/faq'
 import { $all } from '@/lib/dom'
+import { bindLazyVideos } from '@/lib/lazy-video'
 import { bindPageTransitions } from '@/lib/page-transition'
 import { bindPerfGuards } from '@/lib/perf'
 import { bindStepsProgress } from '@/lib/steps-progress'
@@ -10,6 +11,7 @@ export function bootPage(page: 'home' | 'start' | 'thanks'): void {
   initAnalytics()
   track('ViewContent', { page })
   bindPerfGuards()
+  bindLazyVideos()
   bindFaq()
   bindTracking()
   bindPageTransitions()

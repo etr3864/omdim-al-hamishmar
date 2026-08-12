@@ -43,13 +43,13 @@ export const site = {
   videos: {
     /** דף הבית — הרב סנדרו (לכלל הציבור) */
     explain: `${CDN}/videos/explain.mp4`,
-    explainPoster: `${CDN}/videos/explain-poster.jpg`,
+    explainPoster: `${CDN}/videos/explain-poster.webp`,
     /** דף ביצוע — מדריך אנכי */
     tutorial: `${CDN}/videos/tutorial.mp4`,
-    tutorialPoster: `${CDN}/videos/tutorial-poster.jpg`,
+    tutorialPoster: `${CDN}/videos/tutorial-poster.webp`,
     /** דף תודה — סרטון סנדרו #2 (מסר נפרד, אנכי) */
     sandro: `${CDN}/videos/sandro.mp4`,
-    sandroPoster: `${CDN}/videos/sandro-poster.jpg`,
+    sandroPoster: `${CDN}/videos/sandro-poster.webp`,
   },
 
   logos: {

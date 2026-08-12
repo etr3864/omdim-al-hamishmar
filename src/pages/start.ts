@@ -56,11 +56,11 @@ ${renderHeader('start')}
       <div class="tutorial">
         <div class="tutorial__media">
           <div class="tutorial__video video-frame video-frame--vertical" data-video-wrap>
-            <video controls playsinline preload="metadata" muted
+            <video controls playsinline preload="none" muted
               poster="${site.videos.tutorialPoster}"
+              data-lazy-src="${site.videos.tutorial}"
               data-tutorial-video
               data-track-play="video_tutorial">
-              <source src="${site.videos.tutorial}" type="video/mp4">
             </video>
             <button type="button" class="sound-gate" data-unmute-play data-track="unmute_tutorial">
               <span class="sound-gate__icon" aria-hidden="true">♪</span>

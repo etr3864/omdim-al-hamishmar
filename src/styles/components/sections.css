@@ -253,6 +253,10 @@
   transform: translateY(-3px);
 }
 
+.trust-face__ring picture {
+  display: contents;
+}
+
 .trust-face img {
   display: block;
   width: clamp(62px, 15vw, 88px);

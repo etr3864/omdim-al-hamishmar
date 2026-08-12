@@ -30,9 +30,9 @@ ${renderHeader('thanks')}
     <div class="container--narrow stack-center" style="margin-inline:auto;gap:22px">
       <h2 class="display display--md display--center display--mid">${accentHtml(thanks.video.title, thanks.video.titleAccent)}</h2>
       <div class="video-frame video-frame--vertical">
-        <video controls playsinline preload="metadata" poster="${site.videos.sandroPoster}"
+        <video controls playsinline preload="none" poster="${site.videos.sandroPoster}"
+          data-lazy-src="${site.videos.sandro}"
           data-track-play="video_sandro">
-          <source src="${site.videos.sandro}" type="video/mp4">
         </video>
       </div>
     </div>

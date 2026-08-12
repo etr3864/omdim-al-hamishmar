@@ -17,10 +17,10 @@ export function renderHomePage(): string {
       ? renderTrustStrip(rabbis, shared.trustLine)
       : `
       <div class="trust-strip" style="max-width:420px">
-        <img src="${rabbis[6].photo}" alt="${rabbis[6].name}" width="104" height="104"
+        <img src="${rabbis[rabbis.length - 1].photoWebp}" alt="${rabbis[rabbis.length - 1].name}" width="104" height="104"
           style="width:104px;height:104px;border-radius:50%;border:1.5px solid var(--hairline);object-fit:cover;filter:grayscale(.15)">
-        <p class="punch" style="font-size:1.25rem;max-width:none">״${rabbis[6].quote}״</p>
-        <span class="micro">${rabbis[6].name} · ${shared.trustLine}</span>
+        <p class="punch" style="font-size:1.25rem;max-width:none">״${rabbis[rabbis.length - 1].quote}״</p>
+        <span class="micro">${rabbis[rabbis.length - 1].name} · ${shared.trustLine}</span>
       </div>`
 
   const heroTitle = `
@@ -67,9 +67,9 @@ ${renderHeader('home')}
       <h2 class="display display--lg display--center display--wide">${accentHtml(home.video.title, home.video.titleAccent)}</h2>
       <span class="eyebrow" style="color:rgba(231,185,90,.75);letter-spacing:.04em">${home.video.caption}</span>
       <div class="video-frame video-frame--vertical video-frame--featured">
-        <video controls playsinline preload="metadata" poster="${site.videos.explainPoster}"
+        <video controls playsinline preload="none" poster="${site.videos.explainPoster}"
+          data-lazy-src="${site.videos.explain}"
           data-track-play="video_explain">
-          <source src="${site.videos.explain}" type="video/mp4">
         </video>
       </div>
     </div>
