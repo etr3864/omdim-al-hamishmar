@@ -60,7 +60,7 @@ video?.addEventListener('volumechange', () => {
   }
 })
 
-/** פתיחת מסך זמן באייפון — סכמות לא רשמיות, מנסים כמה וריאציות */
+/** פתיחת מסך זמן — רק בספארי; בכרום אפל חוסמת את הקישור */
 function isAppleMobile(): boolean {
   const ua = navigator.userAgent
   const iOS = /iPhone|iPad|iPod/i.test(ua)
@@ -68,30 +68,38 @@ function isAppleMobile(): boolean {
   return iOS || iPadOS
 }
 
-async function openScreenTimeSettings(): Promise<void> {
-  const candidates = [
-    'App-prefs:root=SCREEN_TIME&path=CONTENT_PRIVACY',
-    'App-prefs:SCREEN_TIME',
-    'prefs:root=SCREEN_TIME&path=CONTENT_PRIVACY',
-    'prefs:root=SCREEN_TIME',
-    'App-prefs:root=SCREEN_TIME',
-  ]
+function isSafariIOS(): boolean {
+  if (!isAppleMobile()) return false
+  const ua = navigator.userAgent
+  // Chrome/Firefox/Edge/Opera באייפון = לא ספארי אמיתי
+  if (/CriOS|FxiOS|EdgiOS|OPiOS|Chrome\//i.test(ua)) return false
+  return /Safari/i.test(ua)
+}
 
-  for (const href of candidates) {
-    try {
-      const a = document.createElement('a')
-      a.href = href
-      a.style.display = 'none'
-      document.body.appendChild(a)
-      a.click()
-      a.remove()
-      // נותנים לספארי רגע לנסות לפתוח לפני הניסיון הבא
-      await new Promise((r) => setTimeout(r, 280))
-      // אם עזבנו את הדף — הצלחנו
-      if (document.hidden) return
-    } catch {
-      /* try next */
-    }
+function showSettingsFallback(message: string): void {
+  const box = $('[data-settings-fallback]')
+  const msg = $('[data-settings-fallback-msg]')
+  if (msg) msg.textContent = message
+  box?.removeAttribute('hidden')
+}
+
+async function openScreenTimeSettings(): Promise<void> {
+  // בכרום ודפדפנים אחרים — אין דרך אמינה; מציגים הנחיה
+  if (!isSafariIOS()) {
+    showSettingsFallback(start.tutorial.settingsChromeHint)
+    return
+  }
+
+  // בספארי: ניסיון אחד בלבד (לולאה יוצרת שגיאות מערכת)
+  try {
+    window.location.href = 'App-prefs:root=SCREEN_TIME'
+  } catch {
+    /* ignore */
+  }
+
+  await new Promise((r) => setTimeout(r, 900))
+  if (!document.hidden) {
+    showSettingsFallback(start.tutorial.settingsSafariFail)
   }
 }
 
@@ -103,6 +111,6 @@ if (!isAppleMobile()) {
 }
 
 settingsBtn?.addEventListener('click', () => {
-  track('open_screen_time', { ios: isAppleMobile() })
+  track('open_screen_time', { ios: isAppleMobile(), safari: isSafariIOS() })
   void openScreenTimeSettings()
 })
