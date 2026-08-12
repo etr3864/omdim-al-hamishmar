@@ -22,14 +22,13 @@
   background: rgba(18, 18, 19, calc(0.35 + var(--focus) * 0.45));
   opacity: calc(0.38 + var(--focus) * 0.62);
   transform: scale(calc(0.96 + var(--focus) * 0.04));
-  filter: saturate(calc(0.7 + var(--focus) * 0.3));
   transition:
     opacity 380ms var(--ease),
     transform 420ms var(--ease),
     border-color 380ms var(--ease),
     background 380ms var(--ease),
-    box-shadow 420ms var(--ease),
-    filter 380ms var(--ease);
+    box-shadow 420ms var(--ease);
+  contain: layout style;
 }
 
 .rabbi-card.is-active {
@@ -78,8 +77,8 @@
   object-fit: cover;
   object-position: top center;
   border-radius: 50%;
-  filter: grayscale(calc(0.35 - var(--focus) * 0.25)) contrast(1.03);
-  transition: filter 380ms var(--ease);
+  opacity: calc(0.82 + var(--focus) * 0.18);
+  transition: opacity 380ms var(--ease);
 }
 
 .rabbi-card__body {

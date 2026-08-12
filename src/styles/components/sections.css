@@ -13,8 +13,12 @@
   inset: -10% 0 -25% 0;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 85% 60% at 50% 22%, rgba(231, 185, 90, 0.16), transparent 70%);
-  filter: blur(8px);
+  background: radial-gradient(
+    ellipse 85% 60% at 50% 22%,
+    rgba(231, 185, 90, 0.2),
+    rgba(231, 185, 90, 0.06) 45%,
+    transparent 72%
+  );
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
 }
@@ -368,7 +372,6 @@
   pointer-events: none;
   z-index: 0;
   border-radius: 50%;
-  filter: blur(34px);
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
   mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
 }
@@ -380,7 +383,12 @@
   top: -8%;
   left: 50%;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse, rgba(231, 185, 90, 0.16), rgba(231, 185, 90, 0) 70%);
+  background: radial-gradient(
+    ellipse,
+    rgba(231, 185, 90, 0.2),
+    rgba(231, 185, 90, 0.06) 45%,
+    rgba(231, 185, 90, 0) 72%
+  );
   animation: floatSlow 32s ease-in-out infinite;
 }
 
@@ -395,11 +403,10 @@
   background: linear-gradient(
     180deg,
     rgba(231, 185, 90, 0),
-    rgba(231, 185, 90, 0.12) 42%,
-    rgba(231, 185, 90, 0.04) 72%,
+    rgba(231, 185, 90, 0.16) 42%,
+    rgba(231, 185, 90, 0.06) 72%,
     rgba(231, 185, 90, 0)
   );
-  filter: blur(28px);
 }
 
 /* גשר רך לסקשן השלבים */
@@ -408,7 +415,12 @@
   height: min(40vw, 280px);
   right: -8%;
   bottom: -6%;
-  background: radial-gradient(ellipse, rgba(198, 146, 74, 0.11), rgba(198, 146, 74, 0) 70%);
+  background: radial-gradient(
+    ellipse,
+    rgba(198, 146, 74, 0.16),
+    rgba(198, 146, 74, 0.05) 45%,
+    rgba(198, 146, 74, 0) 72%
+  );
   animation: floatSlow 28s ease-in-out infinite reverse;
 }
 
@@ -434,9 +446,8 @@
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  filter: blur(36px);
   z-index: 0;
-  opacity: 0.45;
+  opacity: 0.55;
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
   mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
 }
@@ -446,8 +457,12 @@
   top: 12%;
   bottom: 18%;
   right: clamp(10px, 6vw, 90px);
-  background: linear-gradient(180deg, rgba(231, 185, 90, 0), rgba(231, 185, 90, 0.05) 45%, rgba(231, 185, 90, 0));
-  filter: blur(32px);
+  background: linear-gradient(
+    180deg,
+    rgba(231, 185, 90, 0),
+    rgba(231, 185, 90, 0.1) 45%,
+    rgba(231, 185, 90, 0)
+  );
 }
 
 .section--steps__glow--b {
@@ -455,7 +470,12 @@
   height: min(38vw, 240px);
   left: -10%;
   bottom: 12%;
-  background: radial-gradient(ellipse, rgba(198, 146, 74, 0.06), rgba(198, 146, 74, 0) 70%);
+  background: radial-gradient(
+    ellipse,
+    rgba(198, 146, 74, 0.1),
+    rgba(198, 146, 74, 0.03) 50%,
+    rgba(198, 146, 74, 0) 72%
+  );
   animation: none;
 }
 

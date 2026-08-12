@@ -12,11 +12,11 @@ export function bindRabbisCarousel(): void {
     return
   }
 
-  // במובייל: רק ערכי focus בדידים (בלי filter רציף בכל פריים)
   const light = window.matchMedia('(max-width: 720px), (hover: none) and (pointer: coarse)').matches
 
   let active = -1
   let ticking = false
+  let listening = false
 
   const setActive = (i: number) => {
     if (i === active) return
@@ -61,7 +61,34 @@ export function bindRabbisCarousel(): void {
     requestAnimationFrame(update)
   }
 
-  update()
-  window.addEventListener('scroll', onScroll, { passive: true })
-  window.addEventListener('resize', onScroll, { passive: true })
+  const start = () => {
+    if (listening) return
+    listening = true
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+  }
+
+  const stop = () => {
+    if (!listening) return
+    listening = false
+    window.removeEventListener('scroll', onScroll)
+    window.removeEventListener('resize', onScroll)
+  }
+
+  // רצים רק כשהסקשן באזור המסך — לא בכל גלילה בעמוד
+  if (typeof IntersectionObserver === 'undefined') {
+    start()
+    return
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      const on = entries.some((e) => e.isIntersecting)
+      if (on) start()
+      else stop()
+    },
+    { rootMargin: '20% 0px', threshold: 0 },
+  )
+  io.observe(root)
 }
