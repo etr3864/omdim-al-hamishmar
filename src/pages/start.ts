@@ -23,7 +23,13 @@ ${renderHeader('start')}
   </section>
 
   <div class="start-journey">
-    <div class="start-journey__rail" aria-hidden="true"><i></i></div>
+    <nav class="start-flow" aria-label="שלבי הביצוע">
+      <a class="start-flow__item" href="#friend-kit">01</a>
+      <span class="start-flow__sep" aria-hidden="true"></span>
+      <a class="start-flow__item" href="#tutorial">02</a>
+      <span class="start-flow__sep" aria-hidden="true"></span>
+      <a class="start-flow__item start-flow__item--final" href="#done">03</a>
+    </nav>
 
     <section class="start-step" id="friend-kit">
       ${ambient({ variant: 'a', mark })}

@@ -12,44 +12,60 @@
   padding-bottom: clamp(3rem, 8vw, 5rem);
 }
 
-.start-journey__rail {
-  display: block;
-  position: absolute;
-  top: 24px;
-  /* הגובה נקבע ב־JS: רק בין מספרי שלב 1→2 */
-  height: 0;
-  bottom: auto;
-  right: calc(var(--start-n, 48px) / 2);
-  width: 2px;
-  transform: translateX(50%);
-  background: rgba(231, 185, 90, 0.1);
-  border-radius: 2px;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 0.25s var(--ease);
+/* חיבור בין שלבים — פס אופקי קצר, לא קו אנכי */
+.start-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto clamp(1.25rem, 3vw, 2rem);
+  padding: 10px 14px;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid rgba(231, 185, 90, 0.16);
+  border-radius: 999px;
+  background: rgba(14, 14, 16, 0.55);
 }
 
-.start-journey__rail.is-ready {
-  opacity: 1;
+.start-flow__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: -0.03em;
+  color: rgba(231, 185, 90, 0.55);
+  text-decoration: none;
+  transition: color 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
-.start-journey__rail > i {
-  position: absolute;
-  inset: 0;
-  transform-origin: top;
-  background: linear-gradient(180deg, rgba(231, 185, 90, 0.85), rgba(231, 185, 90, 0.35));
-  box-shadow: 0 0 20px rgba(231, 185, 90, 0.25);
-  animation: growLine linear both;
-  animation-timeline: view();
-  animation-range: cover 0% cover 70%;
+.start-flow__item:hover,
+.start-flow__item:focus-visible {
+  color: var(--gold);
+  outline: none;
 }
 
-@media (min-width: 720px) {
-  .start-journey__rail {
-    top: 28px;
-  }
+.start-flow__item.is-active {
+  color: var(--gold);
+  background: rgba(231, 185, 90, 0.12);
+  box-shadow: 0 0 20px rgba(231, 185, 90, 0.12);
+}
+
+.start-flow__item--final.is-active {
+  color: var(--ink);
+  background: var(--gold);
+  box-shadow: 0 0 28px rgba(231, 185, 90, 0.28);
+}
+
+.start-flow__sep {
+  width: 22px;
+  height: 1px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, rgba(231, 185, 90, 0.15), rgba(231, 185, 90, 0.55), rgba(231, 185, 90, 0.15));
 }
 
 .start-step {

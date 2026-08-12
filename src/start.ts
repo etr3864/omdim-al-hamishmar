@@ -115,28 +115,38 @@ settingsBtn?.addEventListener('click', () => {
   void openScreenTimeSettings()
 })
 
-/** קו המסילה רק בין מספרי שלב 1→2 (לא דרך הצ׳קליסט עד 3) */
-function layoutStartRail(): void {
-  const journey = document.querySelector<HTMLElement>('.start-journey')
-  const rail = document.querySelector<HTMLElement>('.start-journey__rail')
-  const n1 = document.querySelector<HTMLElement>('#friend-kit .start-step__n')
-  const n2 = document.querySelector<HTMLElement>('#tutorial .start-step__n')
-  if (!journey || !rail || !n1 || !n2) return
+/** הדגשת שלב נוכחי בפס 01—02—03 */
+function bindStartFlow(): void {
+  const items = Array.from(document.querySelectorAll<HTMLAnchorElement>('.start-flow__item'))
+  const sections = items
+    .map((a) => {
+      const id = a.getAttribute('href')?.slice(1)
+      const el = id ? document.getElementById(id) : null
+      return el ? { a, el } : null
+    })
+    .filter(Boolean) as { a: HTMLAnchorElement; el: HTMLElement }[]
 
-  const jTop = journey.getBoundingClientRect().top
-  const c1 = n1.getBoundingClientRect()
-  const c2 = n2.getBoundingClientRect()
-  const start = c1.top + c1.height / 2 - jTop
-  const end = c2.top + c2.height / 2 - jTop
-  const height = Math.max(0, end - start)
+  if (!sections.length) return
 
-  rail.style.top = `${start}px`
-  rail.style.height = `${height}px`
-  rail.classList.add('is-ready')
+  const update = () => {
+    const mid = window.innerHeight * 0.42
+    let best = 0
+    let bestDist = Infinity
+    sections.forEach((s, i) => {
+      const rect = s.el.getBoundingClientRect()
+      const center = rect.top + Math.min(rect.height * 0.25, 120)
+      const dist = Math.abs(center - mid)
+      if (dist < bestDist) {
+        bestDist = dist
+        best = i
+      }
+    })
+    sections.forEach((s, i) => s.a.classList.toggle('is-active', i === best))
+  }
+
+  update()
+  window.addEventListener('scroll', update, { passive: true })
+  window.addEventListener('resize', update, { passive: true })
 }
 
-layoutStartRail()
-window.addEventListener('resize', layoutStartRail, { passive: true })
-if (document.fonts?.ready) {
-  void document.fonts.ready.then(layoutStartRail)
-}
+bindStartFlow()
