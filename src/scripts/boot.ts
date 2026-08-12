@@ -1,6 +1,5 @@
 import { initAnalytics, track } from '@/lib/analytics'
 import { bindFaq } from '@/ui/faq'
-import { bindA11y } from '@/ui/a11y'
 import { $all } from '@/lib/dom'
 import { bindPageTransitions } from '@/lib/page-transition'
 import { bindStepsProgress } from '@/lib/steps-progress'
@@ -10,7 +9,6 @@ export function bootPage(page: 'home' | 'start' | 'thanks'): void {
   initAnalytics()
   track('ViewContent', { page })
   bindFaq()
-  bindA11y()
   bindTracking()
   bindPageTransitions()
   if (page === 'home') {
