@@ -16,7 +16,9 @@
   display: block;
   position: absolute;
   top: 24px;
-  bottom: 100px;
+  /* הגובה נקבע ב־JS: רק בין מספרי שלב 1→2 */
+  height: 0;
+  bottom: auto;
   right: calc(var(--start-n, 48px) / 2);
   width: 2px;
   transform: translateX(50%);
@@ -25,13 +27,19 @@
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+}
+
+.start-journey__rail.is-ready {
+  opacity: 1;
 }
 
 .start-journey__rail > i {
   position: absolute;
   inset: 0;
   transform-origin: top;
-  background: linear-gradient(180deg, rgba(231, 185, 90, 0.85), rgba(231, 185, 90, 0.2));
+  background: linear-gradient(180deg, rgba(231, 185, 90, 0.85), rgba(231, 185, 90, 0.35));
   box-shadow: 0 0 20px rgba(231, 185, 90, 0.25);
   animation: growLine linear both;
   animation-timeline: view();
@@ -41,7 +49,6 @@
 @media (min-width: 720px) {
   .start-journey__rail {
     top: 28px;
-    bottom: 120px;
   }
 }
 

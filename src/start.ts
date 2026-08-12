@@ -114,3 +114,29 @@ settingsBtn?.addEventListener('click', () => {
   track('open_screen_time', { ios: isAppleMobile(), safari: isSafariIOS() })
   void openScreenTimeSettings()
 })
+
+/** קו המסילה רק בין מספרי שלב 1→2 (לא דרך הצ׳קליסט עד 3) */
+function layoutStartRail(): void {
+  const journey = document.querySelector<HTMLElement>('.start-journey')
+  const rail = document.querySelector<HTMLElement>('.start-journey__rail')
+  const n1 = document.querySelector<HTMLElement>('#friend-kit .start-step__n')
+  const n2 = document.querySelector<HTMLElement>('#tutorial .start-step__n')
+  if (!journey || !rail || !n1 || !n2) return
+
+  const jTop = journey.getBoundingClientRect().top
+  const c1 = n1.getBoundingClientRect()
+  const c2 = n2.getBoundingClientRect()
+  const start = c1.top + c1.height / 2 - jTop
+  const end = c2.top + c2.height / 2 - jTop
+  const height = Math.max(0, end - start)
+
+  rail.style.top = `${start}px`
+  rail.style.height = `${height}px`
+  rail.classList.add('is-ready')
+}
+
+layoutStartRail()
+window.addEventListener('resize', layoutStartRail, { passive: true })
+if (document.fonts?.ready) {
+  void document.fonts.ready.then(layoutStartRail)
+}
