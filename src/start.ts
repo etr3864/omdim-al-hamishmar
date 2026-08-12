@@ -115,8 +115,10 @@ settingsBtn?.addEventListener('click', () => {
   void openScreenTimeSettings()
 })
 
-/** הדגשת שלב נוכחי בפס 01—02—03 */
+/** פס שלבים צף — חיווי חצי־שקוף למיקום הנוכחי */
 function bindStartFlow(): void {
+  const flow = document.querySelector<HTMLElement>('.start-flow')
+  const journey = document.querySelector<HTMLElement>('.start-journey')
   const items = Array.from(document.querySelectorAll<HTMLAnchorElement>('.start-flow__item'))
   const sections = items
     .map((a) => {
@@ -126,9 +128,14 @@ function bindStartFlow(): void {
     })
     .filter(Boolean) as { a: HTMLAnchorElement; el: HTMLElement }[]
 
-  if (!sections.length) return
+  if (!flow || !sections.length) return
 
   const update = () => {
+    const show = journey
+      ? journey.getBoundingClientRect().top < window.innerHeight * 0.72
+      : window.scrollY > 120
+    flow.classList.toggle('is-visible', show)
+
     const mid = window.innerHeight * 0.42
     let best = 0
     let bestDist = Infinity
