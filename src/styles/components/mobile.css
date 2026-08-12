@@ -170,18 +170,17 @@ button {
   }
 
   .trust-strip__faces {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 16px 14px;
-    max-width: 400px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px 12px;
+    max-width: 340px;
     width: 100%;
     margin-inline: auto;
   }
 
   .trust-face {
-    width: 88px;
+    width: 100%;
+    max-width: 96px;
     gap: 8px;
   }
 
@@ -524,15 +523,159 @@ button {
     padding: 18px 14px;
   }
 
-  /* אמביינט קל יותר במובייל */
+  /*
+   * ביצועי מובייל — אותו מראה, פחות עבודת GPU:
+   * בלי blur/filter יקרים, בלי רעש full-screen, אנימציות רק על transform/opacity
+   */
+  body::before {
+    display: none;
+  }
+
+  body::after {
+    opacity: 0.55;
+  }
+
+  .site-header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(8, 8, 10, 0.88);
+  }
+
+  .start-flow {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(12, 12, 14, 0.78);
+  }
+
+  .section::before,
+  .section--band::before,
+  .section--steps::before,
+  .section--video::before,
+  .section--glow::before {
+    filter: none;
+    opacity: 0.7;
+  }
+
   .ambient__glow {
-    filter: blur(36px);
-    opacity: 0.65;
+    filter: none;
+    opacity: 0.9;
+  }
+
+  .ambient__glow--1 {
+    background: radial-gradient(
+      ellipse,
+      rgba(231, 185, 90, 0.11),
+      rgba(231, 185, 90, 0.04) 42%,
+      transparent 72%
+    );
+  }
+
+  .ambient__glow--2 {
+    background: radial-gradient(
+      ellipse,
+      rgba(198, 146, 74, 0.09),
+      rgba(198, 146, 74, 0.03) 45%,
+      transparent 74%
+    );
+  }
+
+  .ambient__arc {
+    filter: none;
+    opacity: 0.35;
   }
 
   .ambient__mark {
     opacity: 0.02;
   }
+
+  .hero__glow {
+    filter: none;
+  }
+
+  .section--video__glow {
+    filter: none;
+    opacity: 0.7;
+  }
+
+  .sound-gate {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* כרטיסי רבנים: בלי filter דינמי (יקר מאוד בגלילה) */
+  .rabbi-card {
+    filter: none;
+    transform: none;
+    opacity: 0.55;
+    background: rgba(18, 18, 19, 0.42);
+    border-color: rgba(231, 185, 90, 0.12);
+    transition:
+      opacity 280ms var(--ease),
+      border-color 280ms var(--ease),
+      background 280ms var(--ease),
+      box-shadow 280ms var(--ease);
+  }
+
+  .rabbi-card.is-near {
+    opacity: 0.78;
+    background: rgba(18, 18, 19, 0.55);
+  }
+
+  .rabbi-card.is-active {
+    opacity: 1;
+    background: rgba(18, 18, 19, 0.72);
+    border-color: rgba(231, 185, 90, 0.28);
+  }
+
+  .rabbi-card__photo img {
+    filter: grayscale(0.12) contrast(1.03);
+  }
+
+  .rabbi-card.is-active .rabbi-card__photo img {
+    filter: grayscale(0.02) contrast(1.03);
+  }
+
+  .rabbi-card__quote,
+  .rabbi-card__name {
+    color: rgba(248, 243, 234, 0.78);
+  }
+
+  .rabbi-card.is-active .rabbi-card__quote {
+    color: rgba(248, 243, 234, 0.95);
+  }
+
+  .rabbi-card.is-active .rabbi-card__name {
+    color: rgba(231, 185, 90, 0.9);
+  }
+
+  /* סקשנים מחוץ למסך — פחות ציור */
+  .section:not(.hero),
+  .start-step {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 520px;
+  }
+
+  /* אנימציות איטיות יותר / פחות שכבות זזות */
+  .ambient__glow--1,
+  .ambient__glow--2,
+  .ambient__mark {
+    animation-duration: 48s;
+  }
+
+  .hero__texture {
+    animation: none;
+  }
+
+  .cta--hero {
+    animation: none;
+  }
+}
+
+/* טאב ברקע — עוצרים אנימציות לגמרי */
+html.is-bg-paused *,
+html.is-bg-paused *::before,
+html.is-bg-paused *::after {
+  animation-play-state: paused !important;
 }
 
 @media (max-width: 380px) {
@@ -541,12 +684,12 @@ button {
   }
 
   .trust-strip__faces {
-    max-width: 360px;
-    gap: 14px 12px;
+    max-width: 300px;
+    gap: 14px 10px;
   }
 
   .trust-face {
-    width: 80px;
+    max-width: 88px;
   }
 
   .trust-face img {

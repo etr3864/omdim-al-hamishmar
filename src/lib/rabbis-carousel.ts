@@ -12,6 +12,9 @@ export function bindRabbisCarousel(): void {
     return
   }
 
+  // במובייל: רק ערכי focus בדידים (בלי filter רציף בכל פריים)
+  const light = window.matchMedia('(max-width: 720px), (hover: none) and (pointer: coarse)').matches
+
   let active = -1
   let ticking = false
 
@@ -21,6 +24,10 @@ export function bindRabbisCarousel(): void {
     cards.forEach((c, j) => {
       c.classList.toggle('is-active', j === i)
       c.classList.toggle('is-near', Math.abs(j - i) === 1)
+      if (light) {
+        const f = j === i ? 1 : Math.abs(j - i) === 1 ? 0.5 : 0.12
+        c.style.setProperty('--focus', String(f))
+      }
     })
   }
 
@@ -39,9 +46,10 @@ export function bindRabbisCarousel(): void {
         best = i
       }
 
-      // עוצמה רציפה לפי קרבה למרכז (למעבר רך)
-      const falloff = Math.max(0, 1 - dist / (window.innerHeight * 0.55))
-      card.style.setProperty('--focus', falloff.toFixed(3))
+      if (!light) {
+        const falloff = Math.max(0, 1 - dist / (window.innerHeight * 0.55))
+        card.style.setProperty('--focus', falloff.toFixed(3))
+      }
     })
 
     setActive(best)

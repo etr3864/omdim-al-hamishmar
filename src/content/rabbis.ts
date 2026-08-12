@@ -47,13 +47,6 @@ export const rabbis: Rabbi[] = [
     full: `${cdn}/rabbis/05f.png`,
   },
   {
-    id: '06',
-    name: 'הרב מאיר ביבי שליט״א',
-    quote: 'שכל יהודי ישתמש בשיטה הזאת, זה יכול להציל מיליונים',
-    photo: `${cdn}/rabbis/06.jpg`,
-    full: `${cdn}/rabbis/06f.png`,
-  },
-  {
     id: '07',
     name: 'הרב נתנאל סנדרו שליט״א',
     quote: 'עכשיו אין יותר סיבה לא לשמור את העיניים',

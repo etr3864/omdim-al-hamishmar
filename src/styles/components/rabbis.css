@@ -30,7 +30,6 @@
     background 380ms var(--ease),
     box-shadow 420ms var(--ease),
     filter 380ms var(--ease);
-  will-change: transform, opacity;
 }
 
 .rabbi-card.is-active {

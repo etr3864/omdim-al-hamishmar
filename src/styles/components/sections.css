@@ -218,21 +218,22 @@
 }
 
 .trust-strip__faces {
-  display: flex;
-  gap: clamp(12px, 2.4vw, 22px);
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  max-width: 530px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  max-width: min(720px, 100%);
 }
 
 .trust-face {
-  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  width: clamp(74px, 19vw, 108px);
+  width: 100%;
+  max-width: 108px;
 }
 
 .trust-face__ring {
